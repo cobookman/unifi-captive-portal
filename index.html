@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<head>
+  <title>Guest Wifi</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+  <meta name="description" content="Guest Wifi Captive Portal" />
+  <link rel="stylesheet" href="css/main.css" />
+</head>
+<body>
+  <div class="content">
+    <div class="wrapper">
+      <div id="error" class="hide">Error Message</div>
+      <h1>Bookman Guest WiFi</h1>
+      <div id="photo"></div>
+      <h2>Corie + Pets = ?</h2>
+      <input id="password" type="password" placeholder="wifi password" />
+      <iframe id="terms" src="./terms.txt"></iframe>
+      <button type="button" id="submit" disabled>Accept & Connect</button>
+    </div>
+  </div>
+  <script src="js/app.js"></script>
+  <script>
+    var app = new CaptivePortal({
+      errEl: document.querySelector('#error'),
+      photoEl: document.querySelector('#photo'),
+      passwordEl: document.querySelector('#password'),
+      termsEl: document.querySelector('#terms'),
+      submitEl: document.querySelector('#submit'),
+      contentEl: document.querySelector('.content'),
+    });
+  </script>
+</body>
+</html>
