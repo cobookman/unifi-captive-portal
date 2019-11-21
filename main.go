@@ -65,6 +65,7 @@ func authGuest(w http.ResponseWriter, r *http.Request) {
 	u := unifi.NewClient(ubiquitiUser, ubiquitiPass, "https://192.168.1.1:8443", "default", "5.12.22", true)
 	if err := u.Login(); err != nil {
 		http.Error(w, "Failed to connect to Admin Console", http.StatusInternalServerError)
+		return
 	}
 
 	guest := unifi.UnifiGuest{
@@ -77,6 +78,7 @@ func authGuest(w http.ResponseWriter, r *http.Request) {
 
 	if err := u.AuthGuest(guest); err != nil {
 		http.Error(w, "Failed to register client for Guest Wifi", http.StatusInternalServerError)
+		return
 	}
 
 	fmt.Fprintf(w, "{\"status\": \"registered\"}")
