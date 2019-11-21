@@ -94,7 +94,8 @@ func main() {
 
 	// handle static asset calls
 	fileServer := http.FileServer(FileSystem{http.Dir(*directory)})
-	http.Handle("/", http.StripPrefix("/guest/s/default/", fileServer))
+	http.Handle("/", fileServer)
+	http.Handle("/guest/s/default/", http.StripPrefix("/guest/s/default/", fileServer))
 
 	log.Printf("Serving %s on HTTP port: %s\n", *directory, *port)
 	log.Fatal(http.ListenAndServe(":"+*port, nil))
